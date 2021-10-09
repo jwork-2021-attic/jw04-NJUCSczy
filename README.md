@@ -1,33 +1,10 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=5883943&assignment_repo_type=AssignmentRepo)
-# W04
+# maze分支
+1、在MazeGenerator中，生成一个和当前屏幕大小相同（形状为正方形，边长为屏幕长宽中较小的一个）的二维数组。接着，利用MazeGenerator中的generateMaze函数将此二维数组变为一个01组成的迷宫。  
 
+2、在World中，利用MazeGenerator中生成的二维数组，在titles中布置相应的Wall，Floor已经Target。最后，在(0,0)的位置放置葫芦娃。
 
-请阅读`gourds`分支上示例项目代码。该项目运行后会打开一个图形化窗口，并在其中绘制内容。
+3、在Calabash类中，新增tryMove函数，让葫芦娃尝试向上下左右四个方向移动：如果遇到Wall则无法移动，否则移动到指定位置，并将原先的位置的tile上的thing变为Track，视作已经移动过的位置。
 
-## 技术背景
+4、在DFS类中，实现了一个基于二维数组的dfs寻路方法。此类对象可以用Tile[][]来进行初始化，在完成dfs计算后会将移动结果储存在一个ArrayList\<Node\>类型的对象plan中，并可以通过getPlan函数得到此plan。
 
-`gourds`分支的图形化绘制部分采用了github上开源的[AsciiPanel](https://github.com/trystan/AsciiPanel)。因对其进行了一点点修改，故直接将其源代码放在`asciiPanel`目录下（此部分代码可不阅读）。AsciiPanel模拟了早期计算机终端的现实方式，因其所具有的复古风，还有基于它所实现的Roguelike类型RPG游戏，如`Roguelike`分支上项目所示。
-
-## 任务一
-
-请仔细阅读`gourds`分支项目代码，理解其运作原理，重点理解泛型相关代码，包括：
-- `Tile`类型
-- `Thing`类型中的`Tile<? extends Thing> tile`属性
-- `Sorter`类型、其子类`BubbleSorter`以及`Comparable`接口
-
-请新建`matrix`分支，并在该分支上仿照示例代码，实现妖精方阵排序。
-
-
-> 注意：请将方阵定义为一个二维数据结构，而不是定义为一位数组后分行输出（W02中很多人这样偷懒）。请谨记用代码**模拟**现实。
-
-代码运行结果请截屏发QQ群内。
-
-## 任务二
-
-请新建`maze`分支，并在该分支上实现迷宫生成算法，然后实现葫芦娃走迷宫（可以用算法指挥葫芦娃走出迷宫，或手工操作键盘指挥葫芦娃走迷宫）
-
-迷宫生成算法可直接用https://github.com/oppenheimj/maze-generator。
-
->切记，本课程作业的重点不是算法实现，而是正确写出面向对象风格的代码。
-
-代码运行结果请截屏发QQ群内。
+5、在WordlScreen中的respondToUserInput函数中，处理按键输入：若按键为上下左右，则让葫芦娃利用tryMove函数进行移动；若按下回车键，则根据DFS的结果控制葫芦娃移动。

@@ -17,7 +17,7 @@ public class World {
         if (tiles == null) {
             tiles = new Tile[WIDTH][HEIGHT];
         }
-        int dim=WIDTH>HEIGHT ? WIDTH : HEIGHT;
+        int dim=WIDTH<HEIGHT ? WIDTH : HEIGHT;
         MazeGenerator mazeGenerator = new MazeGenerator(dim);
         mazeGenerator.generateMaze();
 
